@@ -4,8 +4,10 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Configuration
+@CrossOrigin(origins="*")
 public class SpringCloudConfig {
 
     @Bean
@@ -23,18 +25,16 @@ public class SpringCloudConfig {
                 .route(r -> r.path("/fournisseurs/**")
                         .uri("lb://FOURNISSEUR")
                         .id("dd"))
-                .route(r -> r.path("/api/products/**")
+                .route(r -> r.path("/produits/**")
                         .uri("lb://PRODUIT")
                         .id("ee"))
                 .route(r -> r.path("/paniers/**")
                         .uri("lb://SERVICEPANIER")
                         .id("ff"))
-                .route(r -> r.path("/api/users/**")
+                .route(r -> r.path("/users/**")
                         .uri("lb://USERSERVICEMONGO")
-                        .id("ff"))
-                
-              
+                        .id("ff"))            
                 .build();
     }
-
+    
 }
